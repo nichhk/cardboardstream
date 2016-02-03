@@ -17,4 +17,4 @@
         android:id="@+id/button"
         android:layout_gravity="center_horizontal"
         android:text="@string/submit" />
-</LinearLayout>
+</LinearLayout><!-- From: file:/Users/nich/dev/cardboard/cardboardstream/app/src/main/res/layout/config.xml -->

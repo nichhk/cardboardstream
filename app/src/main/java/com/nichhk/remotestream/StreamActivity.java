@@ -17,6 +17,7 @@
 package com.nichhk.remotestream;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -60,7 +61,7 @@ public class StreamActivity extends CardboardActivity implements CardboardView.S
     private int i = 0;
 
 
-    private String baseUrl = "http://192.168.0.106";
+    private String baseUrl = "http://";
 
     private WaitingRequestQueue mQueue;
 
@@ -86,7 +87,8 @@ public class StreamActivity extends CardboardActivity implements CardboardView.S
 
         mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-
+        Intent i = getIntent();
+        baseUrl += i.getExtras().get("ip");
         mOverlayView = (CardboardOverlayView) findViewById(R.id.overlay);
         mOverlayView.show3DToast(BEGIN_MSG);
         startPlayer();

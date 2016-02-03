@@ -7,6 +7,8 @@
     <!-- From: file:/Users/nich/dev/cardboard/cardboardstream/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="app_name">Stream</string>
+    <string name="default_url">192.168.0.106</string>
+    <string name="submit">OK</string>
     <!-- From: file:/Users/nich/dev/cardboard/cardboardstream/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Light">
