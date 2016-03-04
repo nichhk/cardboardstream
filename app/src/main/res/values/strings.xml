@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">Stream</string>
-    <string name="submit">OK</string>
-    <string name="default_url">192.168.0.106</string>
-</resources>

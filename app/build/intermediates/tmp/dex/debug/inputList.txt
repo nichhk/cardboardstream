@@ -1,6 +1,0 @@
-/Users/nich/dev/cardboard/cardboardstream/app/build/intermediates/classes/debug
-/Users/nich/dev/cardboard/cardboardstream/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.0-b956d24fbf67b55fbb1a3285993da6a5a99d3bc4.jar
-/Users/nich/dev/cardboard/cardboardstream/app/build/intermediates/pre-dexed/debug/cardboard-9b8f36e2e85da92083c209c57c5ab72769c4854a.jar
-/Users/nich/dev/cardboard/cardboardstream/app/build/intermediates/pre-dexed/debug/library-1.0.17-55fc462bd86ee5197198f7fd1b2fb6193efe5408.jar
-/Users/nich/dev/cardboard/cardboardstream/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.0-1acb187bee0ef854b8d68cd7833a696acf6052df.jar
-/Users/nich/dev/cardboard/cardboardstream/app/build/intermediates/pre-dexed/debug/classes-ccec2c315aefbb9dd6935a9595f86b473a4792ab.jar
