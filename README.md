@@ -23,30 +23,34 @@ When I built this (January 2016), it cost about $150 in total, not including the
     ```
   2. Pip and Flask for the web server
     ```
-    sudo apt-get install python-pip
-    sudo pip install flask
+    $ sudo apt-get install python-pip
+    $ sudo pip install flask
     ```
   3. packages to enable i2c
     ```
-    sudo apt-get install python-smbus
-    sudo apt-get install i2c-tools
+    $ sudo apt-get install python-smbus
+    $ sudo apt-get install i2c-tools
     ```
 2. Follow [these instructions](https://learn.adafruit.com/adafruit-16-channel-pwm-servo-hat-for-raspberry-pi/overview) to set up the servos and pan-tilt kit.
   1. Attach the tilt servo to channel 0 and the pan servo to channel 3 (the channel choices can be configured in [server.py](https://github.com/nichhk/cardboardstream/blob/master/server/server.py).
   
 ### Run Instructions
-1. Begin streaming the video. 
+1. Clone this repo on your RPi and a computer that can run Android Studio.
   ```
-  uv4l --driver raspicam --auto-video_nr --server-option '--port=5000' --encoding mjpeg --server-option '--enable-webrtc' --width 256 --height 288 --framerate 24 --vflip --hflip
+  $ git clone https://github.com/nichhk/cardboardstream.git
+  ```
+2. Begin streaming the video on the RPi. 
+  ```
+  $ uv4l --driver raspicam --auto-video_nr --server-option '--port=5000' --encoding mjpeg --server-option '--enable-webrtc' --width 256 --height 288 --framerate 24 --vflip --hflip
   ```
   This command will open up an MJPEG stream of the video on port 5000. You can specify the width, height, and framerate for the stream. I flipped the stream vertically and horizontally because of how my camera is attached to the pan-tilt module. 
 
-2. Run the webserver.
+3. Run the webserver on the RPi.
   ```
-  cd /path/to/server
-  sudo python server.py
+  $ cd /path/to/server
+  $ sudo python server.py
   ```
-3. Open the Android app. 
+4. Run the app on your Android device. 
   1. Enter the RPi's IP address. You can find it using `ifconfig`.
   2. The RPi and Android device must be on the same local network. 
-4. Enjoy!
+5. Enjoy!
