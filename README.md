@@ -11,7 +11,7 @@ Streams real-time video from a Raspberry Pi to a Google Cardboard VR Display (An
 - [Power supply for 16-Channel PWM HAT](https://www.adafruit.com/products/276)
 - A good Android phone (I'm using a Moto X Pure)
 - A Google Cardboard kit. I highly recommend [Mattel's plastic headset](http://www.amazon.com/View-Master-Virtual-Reality-Starter-Pack/dp/B011EG5HJ2/ref=sr_1_1?ie=UTF8&qid=1457208416&sr=8-1&keywords=mattel+vr). 
-- 
+
 When I built this (January 2016), it cost about $150 in total, not including the phone.  
 
 ### Raspberry Pi Setup
@@ -40,6 +40,7 @@ When I built this (January 2016), it cost about $150 in total, not including the
 uv4l --driver raspicam --auto-video_nr --server-option '--port=5000' --encoding mjpeg --server-option '--enable-webrtc' --width 256 --height 288 --framerate 24 --vflip --hflip
 ```
 This command will open up an MJPEG stream of the video on port 5000. You can specify the width, height, and framerate for the stream. I flipped the stream vertically and horizontally because of how my camera is attached to the pan-tilt module. 
+
 2. Run the webserver.
 ```
 cd /path/to/server
