@@ -16,22 +16,14 @@ import java.io.IOException;
 
 public class MjpegPlayer implements SurfaceHolder.Callback{
 
-    public final static int POSITION_LOWER_RIGHT = 6;
 
     public final static int SIZE_STANDARD   = 1;
     public final static int SIZE_BEST_FIT   = 4;
-    public final static int SIZE_FULLSCREEN = 8;
 
     private MjpegViewThread thread;
     private MjpegInputStream mIn = null;
-    private boolean showFps = false;
     private boolean mRun = false;
     private Paint overlayPaint;
-
-    private int dispWidth;
-    private int dispHeight;
-    private int displayMode;
-
 
     private boolean surface1Done, surface2Done;
 
@@ -88,15 +80,12 @@ public class MjpegPlayer implements SurfaceHolder.Callback{
         }
     }
 
-    private void init(int width, int height, SurfaceView ... holders) {
+    private void init(SurfaceView ... holders) {
         thread = new MjpegViewThread(holders);
         overlayPaint = new Paint();
         overlayPaint.setTextAlign(Paint.Align.LEFT);
         overlayPaint.setTextSize(12);
         overlayPaint.setTypeface(Typeface.DEFAULT);
-        displayMode = MjpegPlayer.SIZE_STANDARD;
-        dispWidth = width;
-        dispHeight = height;
     }
 
     public void startPlayback() {
@@ -118,8 +107,8 @@ public class MjpegPlayer implements SurfaceHolder.Callback{
     }
 
 
-    public MjpegPlayer(int w, int h, CardboardOverlayView cov) {
-        init(w, h, cov.getSurfaceViews());
+    public MjpegPlayer(CardboardOverlayView cov) {
+        init(cov.getSurfaceViews());
         cov.setCallback(this);
     }
 
@@ -127,9 +116,5 @@ public class MjpegPlayer implements SurfaceHolder.Callback{
     public void setSource(MjpegInputStream source) {
         mIn = source;
         startPlayback();
-    }
-
-    public void setDisplayMode(int s) {
-        displayMode = s;
     }
 }

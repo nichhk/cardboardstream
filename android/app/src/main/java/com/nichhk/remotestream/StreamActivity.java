@@ -39,7 +39,7 @@ import com.sveder.remotestream.R;
 import javax.microedition.khronos.egl.EGLConfig;
 
 /**
- * A Cardboard sample application.
+ * A Cardboard application that streams video from a RPi and sends pitch & yaw to the RPi.
  */
 public class StreamActivity extends CardboardActivity implements CardboardView.StereoRenderer, View.OnTouchListener {
 
@@ -99,15 +99,7 @@ public class StreamActivity extends CardboardActivity implements CardboardView.S
 
     private void startPlayer(){
         String URL = baseUrl + ":5000/stream/video.mjpeg";
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-
-        int width = size.x;
-        int height = size.y;
-
-        mp = new MjpegPlayer(width, height, mOverlayView);
-
+        mp = new MjpegPlayer(mOverlayView);
         (new DoRead()).execute(URL);
     }
 
@@ -148,31 +140,13 @@ public class StreamActivity extends CardboardActivity implements CardboardView.S
             shift();
             mQueue.addRequest(mEulerAngles[0], mEulerAngles[1]);
         }
-        /*
-        if (sufficientlyDifferent(mPrevEulerAngles, mEulerAngles)) {
-            if (inRange(mEulerAngles)) {
-                mPrevEulerAngles = mEulerAngles.clone();
-            }
-            else{
-                mVibrator.vibrate(50);
-            }
-        }*/
     }
 
-    private void shift(){
-        for (int i = 0; i < mEulerAngles.length; i++){
+    private void shift() {
+        for (int i = 0; i < mEulerAngles.length; i++) {
             mEulerAngles[i] -= mInitEulerAngles[i];
         }
     }
-    private boolean inRange(float[] angles){
-        return (Math.abs(angles[0]) <= RANGE && Math.abs(angles[1]) <= RANGE);
-    }
-
-    private boolean sufficientlyDifferent(float[] prev, float[] cur){
-        return (Math.abs(prev[0] - cur[0]) > PRECISION || Math.abs(prev[1] - prev[1]) > PRECISION);
-
-    }
-
 
     /**
      * Draws a frame for an eye. The transformation for that eye (from the camera) is passed in as
@@ -216,10 +190,9 @@ public class StreamActivity extends CardboardActivity implements CardboardView.S
 
         protected void onPostExecute(MjpegInputStream result) {
             if (result == null){
-                throw new RuntimeException("stream is null!@!!!");
+                throw new RuntimeException("stream is null!!!");
             }
             mp.setSource(result);
-            mp.setDisplayMode(MjpegPlayer.SIZE_BEST_FIT);
             Log.i(TAG, "running mjpeg input stream");
         }
     }

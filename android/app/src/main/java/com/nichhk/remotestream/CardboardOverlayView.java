@@ -73,11 +73,6 @@ public class CardboardOverlayView extends LinearLayout {
         startAnimation(mTextFadeAnimation);
     }
 
-    public void show3DImage(String url) {
-        (new DoRead()).execute(url);
-
-    }
-
     private abstract class EndAnimationListener implements Animation.AnimationListener {
         @Override public void onAnimationRepeat(Animation animation) {}
         @Override public void onAnimationStart(Animation animation) {}
@@ -87,15 +82,6 @@ public class CardboardOverlayView extends LinearLayout {
         mLeftView.setOffset(offset);
         mRightView.setOffset(-offset);
     }
-
-
-    //---------------------------------------------------------------------------------------------
-    public void setImage(Bitmap map){
-        //mLeftView.imageView.setImageBitmap(map);
-        //mRightView.imageView.setImageBitmap(map);
-
-    }
-    //------------------------------------------------------------------------------------------
 
     private void setText(String text) {
         mLeftView.setText(text);
@@ -148,7 +134,6 @@ public class CardboardOverlayView extends LinearLayout {
         }
 
         public void setColor(int color) {
-            //imageView.setColorFilter(color);
             textView.setTextColor(color);
         }
 
@@ -201,36 +186,6 @@ public class CardboardOverlayView extends LinearLayout {
 
         public SurfaceView getSurfaceView(){
             return imageView;
-        }
-    }
-
-    class DoRead extends AsyncTask<String, Void, Bitmap> {
-
-        @Override
-        protected Bitmap doInBackground(String... params) {
-            URL url = null;
-            try {
-                url = new URL(params[0]);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            Bitmap image = null;
-            try {
-                image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                image = Bitmap.createScaledBitmap(image, (int) (image.getWidth() * .1), (int) (image.getHeight() * .1), false);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (image == null){
-                Log.i("shit", "shit is broken");
-            }
-            return image;
-
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            setImage(result);
-            Log.i("FUCK", "set the image");
         }
     }
 }
